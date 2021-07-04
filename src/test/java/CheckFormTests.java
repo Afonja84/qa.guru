@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
@@ -26,8 +28,7 @@ public class CheckFormTests {
         $("#lastName").setValue("Usatenko");
         $(byText("Male")).click(); //радио, кликаем по тексту
         $("#userNumber").setValue("1111111111");
-        $("#submit").scrollIntoView(true);
-        $("#submit").click();
+        $("#submit").scrollIntoView(true).click();
 
         //проверки
         $("tbody").$(byText("Student Name")).parent().shouldHave(text("Evgeny Usatenko"));
@@ -56,17 +57,17 @@ public class CheckFormTests {
         $(byText("Sports")).click();
         $(byText("Reading")).click();
         $(byText("Music")).click();
-        $("#uploadPicture").sendKeys("D:/pic.JPG");
+        $("#uploadPicture").uploadFile(new File("src/test/resources/pic.jpg"));
         $("#currentAddress").setValue("street Test");
 
         //выбор штата и города
-        $(byId("state")).click();
+        $(byId("state")).scrollIntoView(true).click();
+        //$(byId("state")).click();
         $(byText("NCR")).click();
         $(byId("city")).click();
         $(byText("Delhi")).click();
 
-        $("#submit").scrollIntoView(true);
-        $("#submit").click();
+        $("#submit").scrollIntoView(true).click();
 
         //проверки
         $("tbody").$(byText("Student Name")).parent().shouldHave(text("Evgeny Usatenko"));
