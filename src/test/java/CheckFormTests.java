@@ -35,7 +35,7 @@ public class CheckFormTests {
         $("tbody").$(byText("Mobile")).parent().shouldHave(text("1111111111"));
     }
 
-    //проверяем все обязательные поля
+    //проверяем все поля
     @Test
     void positiveAllRequiredFieldsTest() {
         System.out.println("Test all fields");
