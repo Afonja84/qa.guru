@@ -61,12 +61,10 @@ public class CheckFormTests {
         $("#currentAddress").setValue("street Test");
 
         //выбор штата и города
-        $(byId("state")).scrollIntoView(true).click();
-        //$(byId("state")).click();
+        $("#state").scrollIntoView(true).click();
         $(byText("NCR")).click();
-        $(byId("city")).click();
+        $("#city").click();
         $(byText("Delhi")).click();
-
         $("#submit").scrollIntoView(true).click();
 
         //проверки
