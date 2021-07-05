@@ -50,7 +50,7 @@ public class CheckFormTests {
         //выбор даты в календаре
         $("#dateOfBirthInput").click();
         $("#dateOfBirthInput").sendKeys(Keys.CONTROL, "a");
-        $("#dateOfBirthInput").sendKeys(Keys.SPACE);
+        $("#dateOfBirthInput").sendKeys(" ");
         $("#dateOfBirthInput").setValue("04 05 1984").sendKeys(Keys.ENTER);
 
         $("#subjectsInput").setValue("Maths").sendKeys(Keys.ENTER);
