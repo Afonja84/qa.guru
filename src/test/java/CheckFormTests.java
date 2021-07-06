@@ -32,7 +32,7 @@ public class CheckFormTests {
         $("#lastName").setValue(lastName);
         $(byText(gender)).click(); //радио, кликаем по тексту
         $("#userNumber").setValue(mobile);
-        $("#submit").scrollIntoView(true).click();
+        $("#submit").scrollTo().click();
 
         //проверки
         $("tbody").$(byText("Student Name")).parent().shouldHave(text(name+" "+lastName));
@@ -70,11 +70,11 @@ public class CheckFormTests {
         $("#currentAddress").setValue("street Test");
 
         //выбор штата и города
-        $("#state").scrollIntoView(true).click();
+        $("#state").scrollTo().click(); //вместо scrollIntoView(true)
         $(byText("NCR")).click();
         $("#city").click();
         $(byText("Delhi")).click();
-        $("#submit").click(); //вместо scrollIntoView(true)
+        $("#submit").click();
 
         //проверки
         $("tbody").$(byText("Student Name")).parent().shouldHave(text(name+" "+lastName));
