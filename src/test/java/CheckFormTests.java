@@ -22,30 +22,39 @@ public class CheckFormTests {
     //проверяем только обязательные поля
     @Test
     void positiveOnlyRequiredFieldsTest() {
-        System.out.println("Test only required fields ");
+        String name = "Evgeny";
+        String lastName = "Usatenko";
+        String mobile = "1111111111";
+        String gender = "Male";
+
         open("https://demoqa.com/automation-practice-form");
-        $("#firstName").setValue("Evgeny");
-        $("#lastName").setValue("Usatenko");
-        $(byText("Male")).click(); //радио, кликаем по тексту
-        $("#userNumber").setValue("1111111111");
+        $("#firstName").setValue(name);
+        $("#lastName").setValue(lastName);
+        $(byText(gender)).click(); //радио, кликаем по тексту
+        $("#userNumber").setValue(mobile);
         $("#submit").scrollIntoView(true).click();
 
         //проверки
-        $("tbody").$(byText("Student Name")).parent().shouldHave(text("Evgeny Usatenko"));
-        $("tbody").$(byText("Gender")).parent().shouldHave(text("Male"));
-        $("tbody").$(byText("Mobile")).parent().shouldHave(text("1111111111"));
+        $("tbody").$(byText("Student Name")).parent().shouldHave(text(name+" "+lastName));
+        $("tbody").$(byText("Gender")).parent().shouldHave(text(gender));
+        $("tbody").$(byText("Mobile")).parent().shouldHave(text(mobile));
     }
 
     //проверяем все поля
     @Test
     void positiveAllRequiredFieldsTest() {
-        System.out.println("Test all fields");
+        String name = "Evgeny";
+        String lastName = "Usatenko";
+        String mobile = "1234567890";
+        String gender = "Male";
+        String email = "Usatenko@sdasd.ru";
+
         open("https://demoqa.com/automation-practice-form");
-        $("#firstName").setValue("Evgeny");
-        $("#lastName").setValue("Usatenko");
-        $("#userEmail").setValue("Usatenko@sdasd.ru");
-        $(byText("Male")).click(); //радио, кликаем по тексту
-        $("#userNumber").setValue("1234567890");
+        $("#firstName").setValue(name);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
+        $(byText(gender)).click(); //радио, кликаем по тексту
+        $("#userNumber").setValue(mobile);
 
         //выбор даты в календаре
         $("#dateOfBirthInput").click();
@@ -53,11 +62,11 @@ public class CheckFormTests {
         $("#dateOfBirthInput").sendKeys(" ");
         $("#dateOfBirthInput").setValue("04 05 1984").sendKeys(Keys.ENTER);
 
-        $("#subjectsInput").setValue("Maths").sendKeys(Keys.ENTER);
+        $("#subjectsInput").setValue("Maths").pressEnter(); // вместо sendKeys(Keys.ENTER);
         $(byText("Sports")).click();
         $(byText("Reading")).click();
         $(byText("Music")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/pic.jpg"));
+        $("#uploadPicture").uploadFromClasspath("pic.jpg") ;//uploadFile(new File("src/test/resources/pic.jpg"));
         $("#currentAddress").setValue("street Test");
 
         //выбор штата и города
@@ -65,13 +74,13 @@ public class CheckFormTests {
         $(byText("NCR")).click();
         $("#city").click();
         $(byText("Delhi")).click();
-        $("#submit").scrollIntoView(true).click();
+        $("#submit").click(); //вместо scrollIntoView(true)
 
         //проверки
-        $("tbody").$(byText("Student Name")).parent().shouldHave(text("Evgeny Usatenko"));
-        $("tbody").$(byText("Student Email")).parent().shouldHave(text("Usatenko@sdasd.ru"));
-        $("tbody").$(byText("Gender")).parent().shouldHave(text("Male"));
-        $("tbody").$(byText("Mobile")).parent().shouldHave(text("1234567890"));
+        $("tbody").$(byText("Student Name")).parent().shouldHave(text(name+" "+lastName));
+        $("tbody").$(byText("Student Email")).parent().shouldHave(text(email));
+        $("tbody").$(byText("Gender")).parent().shouldHave(text(gender));
+        $("tbody").$(byText("Mobile")).parent().shouldHave(text(mobile));
         $("tbody").$(byText("Date of Birth")).parent().shouldHave(text("05 April,1984"));
         $("tbody").$(byText("Subjects")).parent().shouldHave(text("Maths"));
         $("tbody").$(byText("Hobbies")).parent().shouldHave(text("Sports, Reading, Music"));
