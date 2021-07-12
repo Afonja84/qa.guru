@@ -58,9 +58,9 @@ public class CheckFormTests {
 
         //выбор даты в календаре
         $("#dateOfBirthInput").click();
-        $("#dateOfBirthInput").sendKeys(Keys.CONTROL, "a");
-        $("#dateOfBirthInput").sendKeys(" ");
-        $("#dateOfBirthInput").setValue("04 05 1984").sendKeys(Keys.ENTER);
+        $(".react-datepicker__month-select").selectOption("April");
+        $(".react-datepicker__year-select").selectOption("1984");
+        $(".react-datepicker__day--005:not(.react-datepicker__day--outside-month)").click();
 
         $("#subjectsInput").setValue("Maths").pressEnter(); // вместо sendKeys(Keys.ENTER);
         $(byText("Sports")).click();
